@@ -1,6 +1,6 @@
 module github.com/hdget/provider-postgresql-sqlboiler
 
-go 1.23.1
+go 1.23.7
 
 require (
 	github.com/hdget/common v0.0.9
