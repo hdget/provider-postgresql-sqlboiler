@@ -1,5 +1,5 @@
-### MySQL配置
-mysql配置必须在`[sdk]`段落下, 同时必须包含`[sdk.log]`, 
+### PostgreSQL配置
+postgresql配置必须在`[sdk]`段落下, 同时必须包含`[sdk.log]`, 
 日志能力`[sdk.log]`的配置是最基本需求的配置，不管使用sdk的时候是否具有其他能力, 日志配置信息必须要包含
 
 
@@ -25,22 +25,22 @@ mysql配置必须在`[sdk]`段落下, 同时必须包含`[sdk.log]`,
         password = "password"
         host = "127.0.0.1"
         port = 5432
-    [[sdk.mysql.slaves]]
+    [[sdk.postgresql.slaves]]
         database = "postgres"
         user = "postgres"
         password = "password"
         host = "127.0.0.1"
         port = 5432
-    [[sdk.mysql.slaves]]
+    [[sdk.postgresql.slaves]]
         ...
-    [[sdk.mysql.items]]
+    [[sdk.postgresql.items]]
         name = "extra1"       <--- 额外的数据库连接的名字，用来区分不同的数据库连接
         database = "postgres"
         user = "postgres"
         password = "password"
         host = "127.0.0.1"
         port = 5432
-    [[sdk.mysql.items]]
+    [[sdk.postgresql.items]]
         name = "extra2"
         database = "postgres"
         user = "postgres"

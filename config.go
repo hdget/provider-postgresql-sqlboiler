@@ -27,12 +27,12 @@ type psqlConfig struct {
 }
 
 const (
-	configSection = "sdk.mysql"
+	configSection = "sdk.postgresql"
 )
 
 var (
-	errInvalidConfig = errors.New("invalid mysql provider config")
-	errEmptyConfig   = errors.New("empty mysql provider config")
+	errInvalidConfig = errors.New("invalid postgresql provider config")
+	errEmptyConfig   = errors.New("empty postgresql provider config")
 )
 
 func newConfig(configProvider intf.ConfigProvider) (*psqlProviderConfig, error) {
@@ -52,7 +52,7 @@ func newConfig(configProvider intf.ConfigProvider) (*psqlProviderConfig, error) 
 
 	err = c.validate()
 	if err != nil {
-		return nil, errors.Wrap(err, "validate mysql provider config")
+		return nil, errors.Wrap(err, "validate postgresql provider config")
 	}
 
 	return c, nil
