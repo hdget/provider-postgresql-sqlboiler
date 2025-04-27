@@ -13,16 +13,13 @@ type psqlClient struct {
 }
 
 const (
-	// DSN (Data Type NickName): username:password@protocol(address)/dbname?param=value
-	dsnTemplate = "postgres:%s:%s@tcp(%s:%d)/%s?TimeZone=Asia/Shanghai"
+	// DSN (Data Type NickName): username:password@address/dbname?param=value
+	dsnTemplate = "postgres://%s:%s@%s:%d/%s?TimeZone=Asia/Shanghai"
 )
 
 func newClient(c *psqlConfig) (intf.DbClient, error) {
 	// 构造连接参数
 	dsn := fmt.Sprintf(dsnTemplate, c.User, c.Password, c.Host, c.Port, c.Database)
-	if c.UsePgBouncer {
-		dsn = fmt.Sprintf("%s&pool_mode=%s", dsn, c.PgBouncerPoolMode)
-	}
 
 	db, err := sql.Open("pgx", dsn)
 	if err != nil {
