@@ -13,17 +13,16 @@ type psqlProviderConfig struct {
 }
 
 type psqlConfig struct {
-	Name              string `mapstructure:"name"`
-	User              string `mapstructure:"user"`
-	Password          string `mapstructure:"password"`
-	Host              string `mapstructure:"host"`
-	Port              int    `mapstructure:"port"`
-	Database          string `mapstructure:"database"`
-	Schema            string `mapstructure:"schema"`
-	UsePgBouncer      bool   `mapstructure:"use_pg_bouncer"`
-	PgBouncerPoolMode string `mapstructure:"pg_bouncer_pool_mode"`
-	MaxOpenConn       int    `mapstructure:"max_client_conn"`
-	ConnMaxLifetime   int    `mapstructure:"conn_max_lifetime"` // unit: seconds
+	Name            string `mapstructure:"name"`
+	User            string `mapstructure:"user"`
+	Password        string `mapstructure:"password"`
+	Host            string `mapstructure:"host"`
+	Port            int    `mapstructure:"port"`
+	Database        string `mapstructure:"database"`
+	Schema          string `mapstructure:"schema"`
+	UsePgBouncer    bool   `mapstructure:"use_pg_bouncer"`
+	MaxOpenConn     int    `mapstructure:"max_client_conn"`
+	ConnMaxLifetime int    `mapstructure:"conn_max_lifetime"` // unit: seconds
 }
 
 const (
@@ -105,12 +104,6 @@ func (c *psqlProviderConfig) validateInstance(ic *psqlConfig) error {
 			ic.Port = 6432
 		} else {
 			ic.Port = 5432
-		}
-	}
-
-	if ic.UsePgBouncer {
-		if ic.PgBouncerPoolMode == "" {
-			ic.PgBouncerPoolMode = "transaction"
 		}
 	}
 
