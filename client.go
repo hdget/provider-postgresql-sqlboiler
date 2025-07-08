@@ -14,9 +14,7 @@ type psqlClient struct {
 
 const (
 	// DSN (Data Type NickName): username:password@address/dbname?param=value
-	// IMPORTANT:
-	// pgbounceprepared statement name is already in use
-	dsnTemplate = "postgres://%s:%s@%s:%d/%s?TimeZone=Asia/Shanghai&prepared_statements=false"
+	dsnTemplate = "postgres://%s:%s@%s:%d/%s?TimeZone=Asia/Shanghai"
 )
 
 func newClient(c *psqlConfig) (intf.DbClient, error) {
