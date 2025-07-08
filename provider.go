@@ -1,9 +1,9 @@
 package postgresql_sqlboiler
 
 import (
+	"github.com/aarondl/sqlboiler/v4/boil"
 	"github.com/hdget/common/intf"
 	"github.com/hdget/common/types"
-	"github.com/volatiletech/sqlboiler/v4/boil"
 )
 
 type psqlProvider struct {
