@@ -1,6 +1,6 @@
 module github.com/hdget/provider-postgresql-sqlboiler
 
-go 1.23.7
+go 1.23.1
 
 require (
 	github.com/aarondl/sqlboiler/v4 v4.19.5
