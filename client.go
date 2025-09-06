@@ -3,7 +3,7 @@ package postgresql_sqlboiler
 import (
 	"database/sql"
 	"fmt"
-	"github.com/hdget/common/intf"
+	"github.com/hdget/common/types"
 	_ "github.com/jackc/pgx/v5/stdlib" // 替代原来的pq驱动
 	"time"
 )
@@ -17,7 +17,7 @@ const (
 	dsnTemplate = "postgres://%s:%s@%s:%d/%s?TimeZone=Asia/Shanghai"
 )
 
-func newClient(c *psqlConfig) (intf.DbClient, error) {
+func newClient(c *psqlConfig) (types.DbClient, error) {
 	// 构造连接参数
 	dsn := fmt.Sprintf(dsnTemplate, c.User, c.Password, c.Host, c.Port, c.Database)
 
