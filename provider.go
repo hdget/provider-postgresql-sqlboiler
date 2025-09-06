@@ -2,26 +2,25 @@ package postgresql_sqlboiler
 
 import (
 	"github.com/aarondl/sqlboiler/v4/boil"
-	"github.com/hdget/common/intf"
 	"github.com/hdget/common/types"
 )
 
 type psqlProvider struct {
-	defaultDb intf.DbClient
-	masterDb  intf.DbClient
-	slaveDbs  []intf.DbClient
-	extraDbs  map[string]intf.DbClient
+	defaultDb types.DbClient
+	masterDb  types.DbClient
+	slaveDbs  []types.DbClient
+	extraDbs  map[string]types.DbClient
 }
 
-func New(configProvider intf.ConfigProvider, logger intf.LoggerProvider) (intf.DbProvider, error) {
+func New(configProvider types.ConfigProvider, logger types.LoggerProvider) (types.DbProvider, error) {
 	config, err := newConfig(configProvider)
 	if err != nil {
 		return nil, err
 	}
 
 	p := &psqlProvider{
-		slaveDbs: make([]intf.DbClient, len(config.Slaves)),
-		extraDbs: make(map[string]intf.DbClient),
+		slaveDbs: make([]types.DbClient, len(config.Slaves)),
+		extraDbs: make(map[string]types.DbClient),
 	}
 
 	if config.Default != nil {
@@ -68,18 +67,18 @@ func (p *psqlProvider) GetCapability() types.Capability {
 	return Capability
 }
 
-func (p *psqlProvider) My() intf.DbClient {
+func (p *psqlProvider) My() types.DbClient {
 	return p.defaultDb
 }
 
-func (p *psqlProvider) Master() intf.DbClient {
+func (p *psqlProvider) Master() types.DbClient {
 	return p.masterDb
 }
 
-func (p *psqlProvider) Slave(i int) intf.DbClient {
+func (p *psqlProvider) Slave(i int) types.DbClient {
 	return p.slaveDbs[i]
 }
 
-func (p *psqlProvider) By(name string) intf.DbClient {
+func (p *psqlProvider) By(name string) types.DbClient {
 	return p.extraDbs[name]
 }
