@@ -4,7 +4,7 @@ go 1.23.1
 
 require (
 	github.com/aarondl/sqlboiler/v4 v4.19.5
-	github.com/hdget/common v0.0.23
+	github.com/hdget/common v0.1.4
 	github.com/jackc/pgx/v5 v5.7.4
 	github.com/pkg/errors v0.9.1
 	go.uber.org/fx v1.23.0
@@ -20,8 +20,8 @@ require (
 	go.uber.org/multierr v1.10.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
 	golang.org/x/crypto v0.38.0 // indirect
-	golang.org/x/sync v0.14.0 // indirect
+	golang.org/x/sync v0.15.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect
-	golang.org/x/text v0.25.0 // indirect
+	golang.org/x/text v0.26.0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 )
