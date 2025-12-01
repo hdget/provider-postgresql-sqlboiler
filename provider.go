@@ -65,7 +65,7 @@ func New(configProvider types.ConfigProvider, logger types.LoggerProvider) (type
 	return p, nil
 }
 
-func NewClient(configProvider types.ConfigProvider) (types.DbClient, error) {
+func NewClient(configProvider types.ConfigProvider, database ...string) (types.DbClient, error) {
 	config, err := newConfig(configProvider)
 	if err != nil {
 		return nil, errors.Wrap(err, "new postgresql config")
@@ -80,8 +80,12 @@ func NewClient(configProvider types.ConfigProvider) (types.DbClient, error) {
 		return nil, errors.New("postgresql config not found")
 	}
 
-	// 强制性使用系统默认数据库
+	// 默认使用系统默认数据库, 如果指定了数据库就用指定的
 	c.Database = "postgres"
+	if len(database) > 0 {
+		c.Database = database[0]
+	}
+
 	client, err := newClient(c)
 	if err != nil {
 		return nil, errors.Wrap(err, "init postgresql sys db connection")
