@@ -3,9 +3,11 @@ package postgresql_sqlboiler
 import (
 	"database/sql"
 	"fmt"
+	"net/url"
+	"time"
+
 	"github.com/hdget/common/types"
 	_ "github.com/jackc/pgx/v5/stdlib" // 替代原来的pq驱动
-	"time"
 )
 
 type psqlClient struct {
@@ -19,7 +21,7 @@ const (
 
 func newClient(c *psqlConfig) (types.DbClient, error) {
 	// 构造连接参数
-	dsn := fmt.Sprintf(dsnTemplate, c.User, c.Password, c.Host, c.Port, c.Database)
+	dsn := fmt.Sprintf(dsnTemplate, c.User, url.QueryEscape(c.Password), c.Host, c.Port, c.Database)
 
 	db, err := sql.Open("pgx", dsn)
 	if err != nil {
